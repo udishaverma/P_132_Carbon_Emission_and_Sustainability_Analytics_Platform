@@ -70,7 +70,11 @@ FORECASTING_LEARNING_RATE = 0.05
 FORECASTING_MAX_DEPTH = 3
 
 # Server & CORS configuration
-CORS_ORIGINS = os.getenv(
-    "CORS_ORIGINS",
-    "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000"
-).split(",")
+CORS_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000"
+    ).split(",")
+    if origin.strip()
+]
